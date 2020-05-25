@@ -1,9 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders correctly', () => {
+  const h2 = document.createElement('h2');
+  const {getByText} = render(
+    <h2>Yet another ToDo app</h2>
+  )
+  expect(getByText('Yet another ToDo app')).toBeTruthy()
 });
