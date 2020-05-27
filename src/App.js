@@ -24,8 +24,44 @@ const useStyles = makeStyles(() => ({
     marginTop: 20,
     height: 220,
     width: 300,
+  },
+  grid: {
+    background: '#e1e4ea',
+    height: '100vh'
   }
 }));
+
+const QuoteCard = () => {
+  const classes = useStyles();
+  const [quote, setQuote] = React.useState({});
+  React.useEffect(() => getQuote(), []);
+  
+  const getQuote = () => {
+    API.get('qodapi', '/qod')
+      .then(({ qod }) => setQuote(qod.pop()))
+      .catch(() => { setQuote({
+        quote: "Do not let what you cannot do interfere with what you can do.",
+        author: "John Wooden",
+        title: "Inspiring Quote of the day"
+      }) });
+  }
+
+  return (
+    <Card className={classes.card} variant="outlined">
+      <CardContent>
+        <Typography color="textSecondary" gutterBottom>
+          {quote.title}
+        </Typography>
+        <Typography variant="h5" component="h2">
+          {quote.quote}
+        </Typography>
+        <Typography color="textSecondary">
+          {quote.author}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+}
 
 const NewTodo = ({ handleCreate }) => {
   const initialState = { name: '', description: '', completed: false };
@@ -48,8 +84,8 @@ const NewTodo = ({ handleCreate }) => {
   }
 
   return (
-    <Grid item xs={4}>
-      <Grid container justify="center">
+    <Grid item xs={4} className={classes.grid}>
+      <Grid container justify="center" spacing={3}>
         <Grid item>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
@@ -84,6 +120,9 @@ const NewTodo = ({ handleCreate }) => {
             </IconButton>
             </CardActions>
           </Card>
+        </Grid>
+        <Grid item>
+          <QuoteCard />
         </Grid>
       </Grid>
     </Grid> 
