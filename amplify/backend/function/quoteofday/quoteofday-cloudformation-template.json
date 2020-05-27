@@ -82,7 +82,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-reactamplify-dev-125440-deployment",
-					"S3Key": "amplify-builds/quoteofday-5946446a6c726a466671-build.zip"
+					"S3Key": "amplify-builds/quoteofday-41617a6b654b435a6f4d-build.zip"
 				}
 			}
 		},
